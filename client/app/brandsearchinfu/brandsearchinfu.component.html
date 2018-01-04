@@ -1,0 +1,311 @@
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper" style='position:relative;top:-16px;padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+
+    <!-- Main Header -->
+    <div class="main-header" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+   
+        <aside class="main-sidebar">
+            <div style='position:relative;top:-30px;padding-left:16px;margin:auto;'>
+              <a href="index.html"><img src="assets/images/inocove-logosm.png"></a>
+            </div>
+              <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+              <!-- Sidebar Menu -->
+              <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">Brands Dashboard</li>
+                <li><a routerLink="/brandboard" routerLinkActive="active"><span>Home</span></a></li>
+                <li><a routerLink="/brandcamp" routerLinkActive="active"><span>Campaigns</span></a></li>
+                <li  class="active"><a routerLink="/brandsearchinfu" routerLinkActive="active"><span>Influencers</span></a></li>
+                <li><a routerLink="/brandmessages" routerLinkActive="active"><span>Messages</span></a></li>
+                <li><a routerLink="/brandcontent" routerLinkActive="active"><span>Content</span></a></li>
+              </ul>
+              <!-- /.sidebar-menu -->
+            </section>
+              <!-- /.sidebar -->
+        </aside>
+      
+      
+          <!-- Header Navbar -->
+          <nav class="navbar" role="navigation" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;height:40px;'>
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+              <ul class="nav navbar-nav" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+                <li><a routerLink="/brandboard"><span>Home</span></a></li>
+                <li><a routerLink="/brandcamp"  ><span>Campaigns</span></a></li>
+                <li><a routerLink="/brandsearchinfu" routerLinkActive="active"><span>Influencers</span></a></li>
+                <li><a routerLink="/brandmessages" ><span>Messages</span></a></li>
+                <li><a routerLink="/brandcontent" ><span>Content</span></a></li>
+                <li>
+               
+                </li>
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                  <!-- Menu Toggle Button -->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                    <!-- The user image in the navbar-->
+                    <img src="assets/images/profile/{{this.auth.currentUser._id}}.png" class="user-image" alt="UI">
+                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                    <span class="hidden-xs">{{this.auth.currentUser.username}}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- The user image in the menu -->
+                    <li class="user-header">
+                      <img src="assets/images/profile/{{this.auth.currentUser._id}}.png" class="img-circle" alt="UI">
+      
+                      <p>
+                          {{this.auth.currentUser.username}}
+                      </p>
+                    </li>
+      
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a routerLink="/brandprofile" routerLinkActive="active" class="btn btn-default btn-flat">Profile</a>
+                      </div>
+                      <div class="pull-right">
+                        <a routerLink="/logout" routerLinkActive="active" class="btn btn-default btn-flat">Sign out</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+      
+              </ul>
+            </div>
+          </nav>
+    </div>
+    <!-- Left side column. contains the logo and sidebar -->
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Search Influencers
+        </h1>
+
+      </section>
+
+      <!-- Main content -->
+      <section class="content container-fluid" style="min-height:650px">
+        <div class="inner" style="width:100%">
+
+          <div class="card" style="width:100%;">
+            <h6 class="card-header" style="background-color: #808080">Filters</h6>
+            <div class="card-block">
+              <form [formGroup]="searchInfluencersForm" (ngSubmit)="searchInfluencers()">
+                <div class="container">
+                  <div class=row>
+                    <div class="form-group col-sm-3" [ngClass]="setSortBy()" >
+                      <label>Sort By:</label>
+                      <br>
+                      <label class="radio-inline"><input type="radio" name="sortby" formControlName="sortby"  placeholder="" value="popular">Popular</label>
+                      <br>
+                      
+                      <label class="radio-inline"><input type="radio" name="sortby" formControlName="sortby"  placeholder="" value="highfollowers">Highest Followers</label>
+                      <br>
+                      
+                      <label class="radio-inline"><input type="radio" name="sortby" formControlName="sortby"  placeholder="" value="highviews">Highest Views</label>
+
+                    </div>
+                    <div class="form-group col-sm-3" [ngClass]="setCreator()"  >
+                      <label>Creators:</label>
+                      <br>
+                      <label class="radio-inline"><input type="radio" name="creator" formControlName="creator" placeholder="" value="allinfluencer">All Influencers</label>
+                      <br>
+                      
+                      <label class="radio-inline"><input type="radio" name="creator"  formControlName="creator" placeholder="" value="featured">Featured</label>
+
+                    </div>
+                    <div class="form-group col-sm-3" [ngClass]="setAudienceSize()"  >
+                      <label style="background-color:#ffffff;">Audience Size:</label>
+                      <input class="form-control" type="text" name="audiencesize"  formControlName="audiencesize" placeholder="" autofocus>
+
+                    </div>
+                    <div class="form-group col-sm-3" [ngClass]="setAudienceGender()"  >
+                      <label for="sel1">Audience Gender:</label>
+                      <select class="form-control" name="audiencegender" formControlName="audiencegender" placeholder="" id="sel1">
+                              <option>All</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                            </select>
+                    </div>
+                  </div>
+                  <div class="row" style="background-color:#ffffff;">
+                    <div class="col-sm-3 form-group" [ngClass]="setAudienceAge()" >
+                      <label for="sel1">Audience Age:</label>
+                      <select class="form-control" name="audienceage" formControlName="audienceage" placeholder="" id="sel1">
+                            <option>Any Age</option>
+                            <option>13-17</option>
+                            <option>18-24</option>
+                            <option>25-34</option>
+                            <option>35-44</option>
+                            <option>45-54</option>
+                            <option>55-64</option>
+                            <option>65+</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-3 form-group"  [ngClass]="setAudienceCountry()"  >
+                      <label for="sel1">Audience Country:</label>
+                      <select class="form-control" name="audiencecountry" formControlName="audiencecountry" placeholder="" id="sel1">
+                        <option value="US">USA / United States of America</option> 
+                        <option value="CA">Canada</option> 
+                        <option value="GB">UK</option> 
+                        <option value="AF">Afghanistan</option> 
+                        <option value="AX">Aland Islands</option> 
+                        <option value="AL">Albania</option> <option value="DZ">Algeria</option> <option value="AS">American Samoa</option> <option value="AD">Andorra</option> <option value="AO">Angola</option> <option value="AI">Anguilla</option> <option value="AQ">Antarctica</option> <option value="AG">Antigua And Barbuda</option> <option value="AR">Argentina</option> <option value="AM">Armenia</option> <option value="AW">Aruba</option> <option value="AU">Australia</option> <option value="AT">Austria</option> <option value="AZ">Azerbaijan</option> <option value="BS">Bahamas</option> <option value="BH">Bahrain</option> <option value="BD">Bangladesh</option> <option value="BB">Barbados</option> <option value="BY">Belarus</option> <option value="BE">Belgium</option> <option value="BZ">Belize</option> <option value="BJ">Benin</option> <option value="BM">Bermuda</option> <option value="BT">Bhutan</option> <option value="BO">Bolivia</option> <option value="BA">Bosnia And Herzegovina</option> <option value="BW">Botswana</option> <option value="BV">Bouvet Island</option> <option value="BR">Brazil</option> <option value="IO">British Indian Ocean Territory</option> <option value="BN">Brunei Darussalam</option> <option value="BG">Bulgaria</option> <option value="BF">Burkina Faso</option> <option value="BI">Burundi</option> <option value="KH">Cambodia</option> <option value="CM">Cameroon</option> <option value="CV">Cape Verde</option> <option value="KY">Cayman Islands</option> <option value="CF">Central African Republic</option> <option value="TD">Chad</option> <option value="CL">Chile</option> <option value="CX">Christmas Island</option> <option value="CC">Cocos (Keeling) Islands</option> <option value="CO">Colombia</option> <option value="KM">Comoros</option> <option value="CG">Congo</option> <option value="CD">Congo, Democratic Republic</option> <option value="CK">Cook Islands</option> <option value="CR">Costa Rica</option> <option value="CI">Cote D'Ivoire</option> <option value="HR">Croatia</option> <option value="CY">Cyprus</option> <option value="CZ">Czech Republic</option> <option value="DK">Denmark</option> <option value="DJ">Djibouti</option> <option value="DM">Dominica</option> <option value="DO">Dominican Republic</option> <option value="EC">Ecuador</option> <option value="EG">Egypt</option> <option value="SV">El Salvador</option> <option value="GQ">Equatorial Guinea</option> <option value="ER">Eritrea</option> <option value="EE">Estonia</option> <option value="ET">Ethiopia</option> <option value="FK">Falkland Islands (Malvinas)</option> <option value="FO">Faroe Islands</option> <option value="FJ">Fiji</option> <option value="FI">Finland</option> <option value="FR">France</option> <option value="GF">French Guiana</option> <option value="PF">French Polynesia</option> <option value="TF">French Southern Territories</option> <option value="GA">Gabon</option> <option value="GM">Gambia</option> <option value="GE">Georgia</option> <option value="DE">Germany</option> <option value="GH">Ghana</option> <option value="GI">Gibraltar</option> <option value="GR">Greece</option> <option value="GL">Greenland</option> <option value="GD">Grenada</option> <option value="GP">Guadeloupe</option> <option value="GU">Guam</option> <option value="GT">Guatemala</option> <option value="GG">Guernsey</option> <option value="GN">Guinea</option> <option value="GW">Guinea-Bissau</option> <option value="GY">Guyana</option> <option value="HT">Haiti</option> <option value="HM">Heard Island &amp; Mcdonald Islands</option> <option value="VA">Holy See (Vatican City State)</option> <option value="HN">Honduras</option> <option value="HK">Hong Kong</option> <option value="HU">Hungary</option> <option value="IS">Iceland</option> <option value="IN">India</option> <option value="ID">Indonesia</option> <option value="IQ">Iraq</option> <option value="IE">Ireland</option> <option value="IM">Isle Of Man</option> <option value="IL">Israel</option> <option value="IT">Italy</option> <option value="JM">Jamaica</option> <option value="JP">Japan</option> <option value="JE">Jersey</option> <option value="JO">Jordan</option> <option value="KZ">Kazakhstan</option> <option value="KE">Kenya</option> <option value="KI">Kiribati</option> <option value="KR">South Korea</option> <option value="KW">Kuwait</option> <option value="KG">Kyrgyzstan</option> <option value="LA">Lao People's Democratic Republic</option> <option value="LV">Latvia</option> <option value="LB">Lebanon</option> <option value="LS">Lesotho</option> <option value="LR">Liberia</option> <option value="LY">Libyan Arab Jamahiriya</option> <option value="LI">Liechtenstein</option> <option value="LT">Lithuania</option> <option value="LU">Luxembourg</option> <option value="MO">Macao</option> <option value="MK">Macedonia</option> <option value="MG">Madagascar</option> <option value="MW">Malawi</option> <option value="MY">Malaysia</option> <option value="MV">Maldives</option> <option value="ML">Mali</option> <option value="MT">Malta</option> <option value="MH">Marshall Islands</option> <option value="MQ">Martinique</option> <option value="MR">Mauritania</option> <option value="MU">Mauritius</option> <option value="YT">Mayotte</option> <option value="MX">Mexico</option> <option value="FM">Micronesia, Federated States Of</option> <option value="MD">Moldova</option> <option value="MC">Monaco</option> <option value="MN">Mongolia</option> <option value="ME">Montenegro</option> <option value="MS">Montserrat</option> <option value="MA">Morocco</option> <option value="MZ">Mozambique</option> <option value="MM">Myanmar</option> <option value="NA">Namibia</option> <option value="NR">Nauru</option> <option value="NP">Nepal</option> <option value="NL">Netherlands</option> <option value="AN">Netherlands Antilles</option> <option value="NC">New Caledonia</option> <option value="NZ">New Zealand</option> <option value="NI">Nicaragua</option> <option value="NE">Niger</option> <option value="NG">Nigeria</option> <option value="NU">Niue</option> <option value="NF">Norfolk Island</option> <option value="MP">Northern Mariana Islands</option> <option value="NO">Norway</option> <option value="OM">Oman</option> <option value="PK">Pakistan</option> <option value="PW">Palau</option> <option value="PS">Palestinian Territory, Occupied</option> <option value="PA">Panama</option> <option value="PG">Papua New Guinea</option> <option value="PY">Paraguay</option> <option value="PE">Peru</option> <option value="PH">Philippines</option> <option value="PN">Pitcairn</option> <option value="PL">Poland</option> <option value="PT">Portugal</option> <option value="PR">Puerto Rico</option> <option value="QA">Qatar</option> <option value="RE">Reunion</option> <option value="RO">Romania</option> <option value="RU">Russia</option> <option value="RW">Rwanda</option> <option value="BL">Saint Barthelemy</option> <option value="SH">Saint Helena</option> <option value="KN">Saint Kitts And Nevis</option> <option value="LC">Saint Lucia</option> <option value="MF">Saint Martin</option> <option value="PM">Saint Pierre And Miquelon</option> <option value="VC">Saint Vincent And Grenadines</option> <option value="WS">Samoa</option> <option value="SM">San Marino</option> <option value="ST">Sao Tome And Principe</option> <option value="SA">Saudi Arabia</option> <option value="SN">Senegal</option> <option value="RS">Serbia</option> <option value="SC">Seychelles</option> <option value="SL">Sierra Leone</option> <option value="SG">Singapore</option> <option value="SK">Slovakia</option> <option value="SI">Slovenia</option> <option value="SB">Solomon Islands</option> <option value="SO">Somalia</option> <option value="ZA">South Africa</option> <option value="GS">South Georgia And Sandwich Isl.</option> <option value="ES">Spain</option> <option value="LK">Sri Lanka</option> <option value="SR">Suriname</option> <option value="SJ">Svalbard And Jan Mayen</option> <option value="SZ">Swaziland</option> <option value="SE">Sweden</option> <option value="CH">Switzerland</option> <option value="TW">Taiwan</option> <option value="TJ">Tajikistan</option> <option value="TZ">Tanzania</option> <option value="TH">Thailand</option> <option value="TL">Timor-Leste</option> <option value="TG">Togo</option> <option value="TK">Tokelau</option> <option value="TO">Tonga</option> <option value="TT">Trinidad And Tobago</option> <option value="TN">Tunisia</option> <option value="TR">Turkey</option> <option value="TM">Turkmenistan</option> <option value="TC">Turks And Caicos Islands</option> <option value="TV">Tuvalu</option> <option value="UG">Uganda</option> <option value="UA">Ukraine</option> <option value="AE">United Arab Emirates</option> <option value="UM">United States Outlying Islands</option> <option value="UY">Uruguay</option> <option value="UZ">Uzbekistan</option> <option value="VU">Vanuatu</option> <option value="VE">Venezuela</option> <option value="VN">Viet Nam</option> <option value="VG">Virgin Islands, British</option> <option value="VI">Virgin Islands, U.S.</option> <option value="WF">Wallis And Futuna</option> <option value="EH">Western Sahara</option> <option value="YE">Yemen</option> <option value="ZM">Zambia</option> <option value="ZW">Zimbabwe</option> 
+                    
+                      </select>
+                    </div>
+                    <div class="col-sm-3 form-group" [ngClass]="setInfluencerCountry()"  >
+                      <label for="sel1">Influencer Country:</label>
+                      <select class="form-control" name="influencercountry" formControlName="influencercountry" placeholder="" id="sel1">
+                        <option value="US">USA / United States of America</option> 
+                        <option value="CA">Canada</option> 
+                        <option value="GB">UK</option> 
+                        <option value="AF">Afghanistan</option> 
+                        <option value="AX">Aland Islands</option> 
+                        <option value="AL">Albania</option> <option value="DZ">Algeria</option> <option value="AS">American Samoa</option> <option value="AD">Andorra</option> <option value="AO">Angola</option> <option value="AI">Anguilla</option> <option value="AQ">Antarctica</option> <option value="AG">Antigua And Barbuda</option> <option value="AR">Argentina</option> <option value="AM">Armenia</option> <option value="AW">Aruba</option> <option value="AU">Australia</option> <option value="AT">Austria</option> <option value="AZ">Azerbaijan</option> <option value="BS">Bahamas</option> <option value="BH">Bahrain</option> <option value="BD">Bangladesh</option> <option value="BB">Barbados</option> <option value="BY">Belarus</option> <option value="BE">Belgium</option> <option value="BZ">Belize</option> <option value="BJ">Benin</option> <option value="BM">Bermuda</option> <option value="BT">Bhutan</option> <option value="BO">Bolivia</option> <option value="BA">Bosnia And Herzegovina</option> <option value="BW">Botswana</option> <option value="BV">Bouvet Island</option> <option value="BR">Brazil</option> <option value="IO">British Indian Ocean Territory</option> <option value="BN">Brunei Darussalam</option> <option value="BG">Bulgaria</option> <option value="BF">Burkina Faso</option> <option value="BI">Burundi</option> <option value="KH">Cambodia</option> <option value="CM">Cameroon</option> <option value="CV">Cape Verde</option> <option value="KY">Cayman Islands</option> <option value="CF">Central African Republic</option> <option value="TD">Chad</option> <option value="CL">Chile</option> <option value="CX">Christmas Island</option> <option value="CC">Cocos (Keeling) Islands</option> <option value="CO">Colombia</option> <option value="KM">Comoros</option> <option value="CG">Congo</option> <option value="CD">Congo, Democratic Republic</option> <option value="CK">Cook Islands</option> <option value="CR">Costa Rica</option> <option value="CI">Cote D'Ivoire</option> <option value="HR">Croatia</option> <option value="CY">Cyprus</option> <option value="CZ">Czech Republic</option> <option value="DK">Denmark</option> <option value="DJ">Djibouti</option> <option value="DM">Dominica</option> <option value="DO">Dominican Republic</option> <option value="EC">Ecuador</option> <option value="EG">Egypt</option> <option value="SV">El Salvador</option> <option value="GQ">Equatorial Guinea</option> <option value="ER">Eritrea</option> <option value="EE">Estonia</option> <option value="ET">Ethiopia</option> <option value="FK">Falkland Islands (Malvinas)</option> <option value="FO">Faroe Islands</option> <option value="FJ">Fiji</option> <option value="FI">Finland</option> <option value="FR">France</option> <option value="GF">French Guiana</option> <option value="PF">French Polynesia</option> <option value="TF">French Southern Territories</option> <option value="GA">Gabon</option> <option value="GM">Gambia</option> <option value="GE">Georgia</option> <option value="DE">Germany</option> <option value="GH">Ghana</option> <option value="GI">Gibraltar</option> <option value="GR">Greece</option> <option value="GL">Greenland</option> <option value="GD">Grenada</option> <option value="GP">Guadeloupe</option> <option value="GU">Guam</option> <option value="GT">Guatemala</option> <option value="GG">Guernsey</option> <option value="GN">Guinea</option> <option value="GW">Guinea-Bissau</option> <option value="GY">Guyana</option> <option value="HT">Haiti</option> <option value="HM">Heard Island &amp; Mcdonald Islands</option> <option value="VA">Holy See (Vatican City State)</option> <option value="HN">Honduras</option> <option value="HK">Hong Kong</option> <option value="HU">Hungary</option> <option value="IS">Iceland</option> <option value="IN">India</option> <option value="ID">Indonesia</option> <option value="IQ">Iraq</option> <option value="IE">Ireland</option> <option value="IM">Isle Of Man</option> <option value="IL">Israel</option> <option value="IT">Italy</option> <option value="JM">Jamaica</option> <option value="JP">Japan</option> <option value="JE">Jersey</option> <option value="JO">Jordan</option> <option value="KZ">Kazakhstan</option> <option value="KE">Kenya</option> <option value="KI">Kiribati</option> <option value="KR">South Korea</option> <option value="KW">Kuwait</option> <option value="KG">Kyrgyzstan</option> <option value="LA">Lao People's Democratic Republic</option> <option value="LV">Latvia</option> <option value="LB">Lebanon</option> <option value="LS">Lesotho</option> <option value="LR">Liberia</option> <option value="LY">Libyan Arab Jamahiriya</option> <option value="LI">Liechtenstein</option> <option value="LT">Lithuania</option> <option value="LU">Luxembourg</option> <option value="MO">Macao</option> <option value="MK">Macedonia</option> <option value="MG">Madagascar</option> <option value="MW">Malawi</option> <option value="MY">Malaysia</option> <option value="MV">Maldives</option> <option value="ML">Mali</option> <option value="MT">Malta</option> <option value="MH">Marshall Islands</option> <option value="MQ">Martinique</option> <option value="MR">Mauritania</option> <option value="MU">Mauritius</option> <option value="YT">Mayotte</option> <option value="MX">Mexico</option> <option value="FM">Micronesia, Federated States Of</option> <option value="MD">Moldova</option> <option value="MC">Monaco</option> <option value="MN">Mongolia</option> <option value="ME">Montenegro</option> <option value="MS">Montserrat</option> <option value="MA">Morocco</option> <option value="MZ">Mozambique</option> <option value="MM">Myanmar</option> <option value="NA">Namibia</option> <option value="NR">Nauru</option> <option value="NP">Nepal</option> <option value="NL">Netherlands</option> <option value="AN">Netherlands Antilles</option> <option value="NC">New Caledonia</option> <option value="NZ">New Zealand</option> <option value="NI">Nicaragua</option> <option value="NE">Niger</option> <option value="NG">Nigeria</option> <option value="NU">Niue</option> <option value="NF">Norfolk Island</option> <option value="MP">Northern Mariana Islands</option> <option value="NO">Norway</option> <option value="OM">Oman</option> <option value="PK">Pakistan</option> <option value="PW">Palau</option> <option value="PS">Palestinian Territory, Occupied</option> <option value="PA">Panama</option> <option value="PG">Papua New Guinea</option> <option value="PY">Paraguay</option> <option value="PE">Peru</option> <option value="PH">Philippines</option> <option value="PN">Pitcairn</option> <option value="PL">Poland</option> <option value="PT">Portugal</option> <option value="PR">Puerto Rico</option> <option value="QA">Qatar</option> <option value="RE">Reunion</option> <option value="RO">Romania</option> <option value="RU">Russia</option> <option value="RW">Rwanda</option> <option value="BL">Saint Barthelemy</option> <option value="SH">Saint Helena</option> <option value="KN">Saint Kitts And Nevis</option> <option value="LC">Saint Lucia</option> <option value="MF">Saint Martin</option> <option value="PM">Saint Pierre And Miquelon</option> <option value="VC">Saint Vincent And Grenadines</option> <option value="WS">Samoa</option> <option value="SM">San Marino</option> <option value="ST">Sao Tome And Principe</option> <option value="SA">Saudi Arabia</option> <option value="SN">Senegal</option> <option value="RS">Serbia</option> <option value="SC">Seychelles</option> <option value="SL">Sierra Leone</option> <option value="SG">Singapore</option> <option value="SK">Slovakia</option> <option value="SI">Slovenia</option> <option value="SB">Solomon Islands</option> <option value="SO">Somalia</option> <option value="ZA">South Africa</option> <option value="GS">South Georgia And Sandwich Isl.</option> <option value="ES">Spain</option> <option value="LK">Sri Lanka</option> <option value="SR">Suriname</option> <option value="SJ">Svalbard And Jan Mayen</option> <option value="SZ">Swaziland</option> <option value="SE">Sweden</option> <option value="CH">Switzerland</option> <option value="TW">Taiwan</option> <option value="TJ">Tajikistan</option> <option value="TZ">Tanzania</option> <option value="TH">Thailand</option> <option value="TL">Timor-Leste</option> <option value="TG">Togo</option> <option value="TK">Tokelau</option> <option value="TO">Tonga</option> <option value="TT">Trinidad And Tobago</option> <option value="TN">Tunisia</option> <option value="TR">Turkey</option> <option value="TM">Turkmenistan</option> <option value="TC">Turks And Caicos Islands</option> <option value="TV">Tuvalu</option> <option value="UG">Uganda</option> <option value="UA">Ukraine</option> <option value="AE">United Arab Emirates</option> <option value="UM">United States Outlying Islands</option> <option value="UY">Uruguay</option> <option value="UZ">Uzbekistan</option> <option value="VU">Vanuatu</option> <option value="VE">Venezuela</option> <option value="VN">Viet Nam</option> <option value="VG">Virgin Islands, British</option> <option value="VI">Virgin Islands, U.S.</option> <option value="WF">Wallis And Futuna</option> <option value="EH">Western Sahara</option> <option value="YE">Yemen</option> <option value="ZM">Zambia</option> <option value="ZW">Zimbabwe</option> 
+                    </select>
+                    </div>
+                    <div class="form-group col-sm-3" [ngClass]="setProductCategory()"  >
+                      <label for="sel1">Product Category :</label>
+                      <select class="form-control" name="productcategory" formControlName="productcategory" placeholder="" id="sel1">
+                          <option>Beauty & Fashion</option>
+                          <option>Gaming & Apps</option>
+                          <option>Health & Fitness</option>
+                          <option>Pets</option>
+                          <option>Tech</option>
+                          <option>Others</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit"><i class="fa"></i> Search Influencers</button>
+                </div>
+              </form>
+            </div>
+          
+          </div>
+
+        </div>
+
+
+
+        <div class="inner" style="width:100%">
+          <div class="card" style="width:100%;">
+            <h6 class="card-header" style="background-color: #808080">Matched Influencers</h6>
+            <div class="card-block" style="height:300px;overflow:scroll;">
+              <ul><div *ngIf='influencerlist.length === 0'>No Influencers matched your search criteria. Try Again.</div>
+                <li *ngFor="let influencer of influencerlist; let id=index;" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                  <div class="container" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                    <div class=row style="border-color: #3c8dbc;position:relative;   padding-top:16px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                      <div class="form-group col-sm-4">
+                        {{id+1}} {{ influencer.username }}</div>
+                      <div class="form-group col-sm-4">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" attr.data-target="#myModal{{ id }}">View Details</button>
+                        <!--  <span style="cursor: pointer;" type="button" class="badge badge-white" data-toggle="modal" attr.data-target="#myModal{{id}}">View Details</span>-->
+                      </div>
+                      <div class="form-group col-sm-4">
+                          <button type="button" class="btn" data-toggle="modal" attr.data-target="#myMessageModal{{ id }}">Send Message</button>
+                          <!--  <span style="cursor: pointer;" type="button" class="badge badge-white" data-toggle="modal" attr.data-target="#myModal{{id}}">View Details</span>-->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal -->
+                  <div id="myModal{{ id }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">{{ influencer.username }}</h4>
+                          <img src="assets/images/profile/{{influencer.userid}}.png" height="100px" width="100px" class="img-circle" alt="">
+                          
+                        </div>
+                        <div class="modal-body">
+                                                    
+                          <p style="background-color: #F0F0F0">country: {{ influencer.influencercountry}}</p>
+                          <p style="background-color: #A2D7F7">Product Category: {{ influencer.productcategory}}</p>
+                          <p style="background-color: #F0F0F0">Audience Size: {{ influencer.audiencesize}}</p>
+                          <p style="background-color: #A2D7F7">Audience Gender: {{ influencer.audiencegender}}</p>
+                          <p style="background-color: #F0F0F0">Audience Age: {{ influencer.audienceage}}</p>
+                          <p style="background-color: #A2D7F7">Audience Country: {{ influencer.audiencecountry}}</p>
+                          <p style="background-color: #F0F0F0">Work Examples: {{ influencer.workexamples}}</p>
+                    
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div id="myMessageModal{{ id }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog" attr.id="{{ influencer.username }}">
+                          <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessageToInfluencer(influencer.userid,influencer.username )" id="newid"> 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Message From  {{this.auth.currentUser.username}}</h4>
+                          </div>
+                          <div class="modal-body">
+                              <div class="container">                         
+                              <div class="row" style="background-color:#ffffff;">
+                                <label >To: {{influencer.username}}</label>
+                                  <div class="col-sm-12 form-group" style="background-color:#ffffff;" [ngClass]="setMessageDetails()">
+                                    <label >Message:</label>
+                                    <textarea class="form-control" type="textarea" name="messagedetails" formControlName="messagedetails" placeholder=""></textarea>
+                                  </div>
+                              </div>
+                              </div>
+                             
+                          </div>
+                          <div class="modal-footer">
+                            <button  type="submit" class="btn btn-primary" ><i class="fa"></i>Send Message</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            
+                          </div>
+                        </div> 
+                      </form>
+                      </div>
+                    </div>
+
+                
+                
+                
+                
+                
+                
+                
+                 </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer" style="height:50px">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Site By <a href="www.integratelogic.com">IntegrateLogic</a>
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2017 <a href="#">Inocove</a>.</strong> All rights reserved.
+    </footer>
+  </div>
+</div>

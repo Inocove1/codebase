@@ -1,0 +1,253 @@
+<app-toast [message]="toast.message"></app-toast>
+<div class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper" style='position:relative;top:-16px;padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+  
+    <!-- Main Header -->
+    <div class="main-header" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+       
+      <aside class="main-sidebar">
+        <div style='position:relative;top:-30px;padding-left:16px;margin:auto;'>
+          <a href="index.html"><img src="assets/images/inocove-logosm.png"></a>
+        </div>
+          <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Brands Dashboard</li>
+            <li><a routerLink="/brandboard" routerLinkActive="active"><span>Home</span></a></li>
+            <li><a routerLink="/brandcamp" routerLinkActive="active"><span>Campaigns</span></a></li>
+            <li><a routerLink="/brandsearchinfu" routerLinkActive="active"><span>Influencers</span></a></li>
+            <li><a routerLink="/brandmessages" routerLinkActive="active"><span>Messages</span></a></li>
+            <li class="active"><a routerLink="/brandcontent" routerLinkActive="active"><span>Content</span></a></li>
+          </ul>
+          <!-- /.sidebar-menu -->
+        </section>
+        
+        <!-- /.sidebar -->
+    </aside>
+  
+  
+      <!-- Header Navbar -->
+      <nav class="navbar" role="navigation" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;height:40px;'>
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+          <ul class="nav navbar-nav" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+            <li><a routerLink="/brandboard"><span>Home</span></a></li>
+            <li><a routerLink="/brandcamp"  ><span>Campaigns</span></a></li>
+            <li><a routerLink="/brandsearchinfu" ><span>Influencers</span></a></li>
+            <li><a routerLink="/brandmessages" ><span>Messages</span></a></li>
+            <li><a routerLink="/brandcontent" routerLinkActive="active"><span>Content</span></a></li>
+            <li>
+           
+            </li>
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                <!-- The user image in the navbar-->
+                <img src="assets/images/profile/{{this.auth.currentUser._id}}.png" class="user-image" alt="UI">
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">{{this.auth.currentUser.username}}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <li class="user-header">
+                  <img src="assets/images/profile/{{this.auth.currentUser._id}}.png" class="img-circle" alt="UI">
+  
+                  <p>
+                      {{this.auth.currentUser.username}}
+                  </p>
+                </li>
+  
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a routerLink="/brandprofile" routerLinkActive="active" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a routerLink="/logout" routerLinkActive="active" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+  
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- Left side column. contains the logo and sidebar -->
+  
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Content
+        </h1>
+        
+      </section>
+  
+      <!-- Main content -->
+      <section class="content container-fluid" style="min-height:650px">
+  
+        <div class="inner"style="width:100%">
+        <div class="card" style="width:100%;" >
+            <h6 class="card-header" style="background-color: #808080">Pending</h6>
+            <div class="card-block" style="height:300px;overflow:scroll;">
+                <ul><div *ngIf='pendlist.length === 0'>No content with pending approval.</div>
+                    <li *ngFor="let pend of pendlist; let id=index;" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;" >
+                        
+                      <div class="container" style="padding-top:10px;padding-right:0px;padding-left:0px;padding-bottom:0px;" >
+                            <div class="row" style="padding-top:10px;padding-right:0px;padding-left:0px;padding-bottom:0px;" >
+                              <div class="form-group col-sm-4" nowrap style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;"  >
+                               {{id+1}}   &emsp; &emsp;  {{ pend.sendername }} &emsp; {{ (pend.contenttype) }}
+                              </div>
+                              <div class="form-group col-sm-4" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                               
+                               {{ ((pend.submitdate).substr(0,16)).replace("T"," ") }}
+                               </div>
+                              <div class="form-group col-sm-4" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                               <button type="button" class="btn-link" data-toggle="modal" attr.data-target="#myContentModal{{ id }}">View Content</button>
+                               <!--  <span style="cursor: pointer;" type="button" class="badge badge-white" data-toggle="modal" attr.data-target="#myModal{{id}}">View Details</span>-->
+                              </div>
+                             
+                            </div>
+                            
+                          </div>
+                        <!-- Modal -->
+                        <div id="myContentModal{{ id }}" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                              <form [formGroup]="sendApprovalForm" (ngSubmit)="setContentApproval(pend.senderid,pend.sendername,pend._id,pend.campaignid)" > 
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">From {{ pend.sendername }}</h4>
+                              </div>
+                              <div class="modal-body">
+                                  
+                                  
+                                  <div class="container">                         
+                                      <div class="row" style="background-color:#ffffff;">
+                                          <div class="col-sm-12 form-group"  style="background-color:#ffffff;">
+                                          <p style="background-color: #F0F0F0">Link: {{ pend.contentlink}}</p>
+                                          <label>Preview:</label>
+                                         
+                                          <div align="center" class="embed-responsive embed-responsive-16by9">
+                                              <img src="assets/content/{{ pend._id}}.png" height="300px" width="500px" alt="">
+                                              <img src="assets/content/{{ pend._id}}.jpeg" height="300px" width="500px" alt="No preview available."> 
+                                              <video alt="no video" class="embed-responsive-item" controls>
+                                                  <source src="assets/content/{{ pend._id}}.mp4" type="video/mp4">
+                                              </video>
+                                          </div>
+                                          </div>
+                                          <div class="col-sm-12 form-group" style="background-color:#ffffff;" [ngClass]="setMessageDetails()">
+                                            <label >Approval Message:</label>
+                                            <textarea class="form-control" type="textarea" name="messagedetails" formControlName="messagedetails" placeholder=""></textarea>
+                                          </div>
+                                      </div>
+                                   
+                                  </div>                          
+                              </div>
+                              <div class="modal-footer">
+                                <button  type="submit" class="btn btn-primary" ><i class="fa"></i>Send Approval</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </form>
+                          </div>
+                        </div> 
+                      
+                    </li>
+                   </ul>
+            </div>    
+        </div>
+        </div>
+  
+        <div class="inner"style="width:100%">
+          <div class="card" style="width:100%;" >
+              <h6 class="card-header" style="background-color: #808080">Approved</h6>
+              <div class="card-block" style="height:300px;overflow:scroll;">
+                  <ul><div *ngIf='approvedlist.length === 0'>No content with approval.</div>
+                      <li *ngFor="let approv of approvedlist; let id=index;" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;" >
+                          <div class="container" style="padding-top:10px;padding-right:0px;padding-left:0px;padding-bottom:0px;" >
+                              <div class="row" style="padding-top:10px;padding-right:0px;padding-left:0px;padding-bottom:0px;" >
+                                <div class="form-group col-sm-4" nowrap style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;"  >
+                                 {{id+1}}   &emsp; &emsp;  {{ approv.sendername }} &emsp; {{ (approv.contenttype) }}
+                                </div>
+                                <div class="form-group col-sm-4" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                                 
+                                 {{ ((approv.submitdate).substr(0,16)).replace("T"," ") }}
+                                 </div>
+                                <div class="form-group col-sm-4" style="padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;">
+                                 <button type="button" class="btn-link" data-toggle="modal" attr.data-target="#myApprovedContentModal{{ id }}">View Content</button>
+                                 <!--  <span style="cursor: pointer;" type="button" class="badge badge-white" data-toggle="modal" attr.data-target="#myModal{{id}}">View Details</span>-->
+                                </div>
+                               
+                              </div>
+                              
+                            </div>
+                          <!-- Modal -->
+                          <div id="myApprovedContentModal{{ id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                          
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">From {{ approv.sendername }}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <p style="background-color: #F0F0F0">Link: {{ approv.contentlink}}</p>
+                                    <label>Preview:</label>
+                                   
+                                    <div align="center" class="embed-responsive embed-responsive-16by9">
+                                        <img src="assets/content/{{ approv._id}}.png" height="300px" width="500px" alt="">
+                                        <img src="assets/content/{{ approv._id}}.jpeg" height="300px" width="500px" alt="No preview available."> 
+                                        <video alt="no video" class="embed-responsive-item" controls>
+                                            <source src="assets/content/{{ approv._id}}.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                                               
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                          
+                            </div>
+                          </div> 
+                        
+                      </li>
+                     </ul>
+              </div>    
+          </div>
+        </div>
+       
+  
+      </section>
+     
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <!-- Main Footer -->
+    <footer class="main-footer" style="height:50px">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Site By <a href="www.integratelogic.com">IntegrateLogic</a>
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2017 <a href="#">Inocove</a>.</strong> All rights reserved.
+    </footer>
+  </div>
+  </div>
+  
+  
+  

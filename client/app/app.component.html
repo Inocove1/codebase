@@ -1,0 +1,187 @@
+<!--<div class="container">
+
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="nav navbar-nav">
+      <a routerLink="/" class="nav-item nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="fa fa-home"></i> Home
+      </a>     
+      <a routerLink="/login" class="nav-item nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+        <i class="fa fa-sign-in"></i> Login
+      </a>
+      <a routerLink="/register" class="nav-item nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+        <i class="fa fa-user-plus"></i> Register
+      </a>
+      <a routerLink="/account" class="nav-item nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+        <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
+      </a>
+      <a routerLink="/admin" class="nav-item nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
+        <i class="fa fa-lock"></i> Admin
+      </a>
+      <a routerLink="/logout" class="nav-item nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+        <i class="fa fa-sign-out"></i> Logout
+      </a>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</div>-->
+  <div>
+    
+    <router-outlet></router-outlet>
+  
+  </div>
+
+  <div *ngIf="showDiv()">
+      
+        <div id="page-wrapper">
+          <!-- Header -->
+            <header id="header" class="alt">
+              <h1 id="logo"><a href="index.html"><img src="assets/images/inocove-logosm.png"></a></h1>
+              <nav id="nav">
+                 <ul class="menu">
+                  <li><a routerLink="/influencer" routerLinkActive="active">Influencer</a></li>
+                  <li><a routerLink="/brands" routerLinkActive="active">Brands</a></li> 
+                  <li><a routerLink="/faqs" routerLinkActive="active">FAQS</a></li>
+
+                  </ul>
+              </nav>
+            </header>
+    
+          <!-- Banner -->
+            <section id="banner">
+    
+              <!--
+                ".inner" is set up as an inline-block so it automatically expands
+                in both directions to fit whatever's inside it. This means it won't
+                automatically wrap lines, so be sure to use line breaks where
+                appropriate (<br />).
+              -->
+              <div class="inner">
+    
+                <header>
+                  <h3>Welcome to Inocove</h3>
+                </header>
+                <p>The influencer <strong>Marketing Platform</strong>
+                <br />
+              
+                </p>
+                <footer>
+                  <ul class="buttons">
+                    <li><a routerLink="/influencer" routerLinkActive="active" class="button fit scrolly">Influencer</a></li>
+                    <li><a routerLink="/brands" routerLinkActive="active" class="button fit scrolly">Brands</a></li>
+                  </ul>
+                </footer>
+    
+              </div>
+    
+            </section>
+    
+          <!-- Main -->
+            <article id="main">
+    
+              <header class="special container">
+                <span class="icon fa-bar-chart-o"></span>
+                <h2>Why Choose <strong>Inocove?</strong></h2>
+              </header>
+    
+              <!-- One -->
+                <section class="wrapper style2 container special-alt">
+                  <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8" style="text-align:center;">
+    
+                      <h6>Inocove​ ​is​ ​an​ ​easy​ ​to​ ​use​ ​platform​ ​that​ ​is​ ​100%​ ​free​ ​for​ ​the​ ​creator and​ ​offers​ ​legal​ ​protection​ ​for​ ​the​ ​brands​ ​and​ ​creators</h6>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    
+                  </div>
+                </section>
+    
+              <!-- Two -->
+                <section class="wrapper style1 container special">
+                  <div class="row">
+                    <div class="4u 12u(narrower)">
+    
+                      <section>
+                        <span class="icon featured fa-check"></span>
+                        <header>
+                          <h3>​Protection​ ​from​ ​FTC​ ​infractions</h3>
+                        </header>
+                        <p>Inocove​ ​does​ ​not​ ​charge​ ​for​ ​the​ ​use​ ​of​ ​the​ ​platform,​ ​instead​ ​the​ ​brands​ ​and​ ​agencies pay​ ​a​ ​small​ ​legal​ ​fee​ ​to​ ​cover​ ​a​ ​contract​ ​that​ ​protects​ ​them​ ​from​ ​any​ ​FTC​ ​infractions.</p>
+                      </section>
+    
+                    </div>
+                    <div class="4u 12u(narrower)">
+    
+                      <section>
+                        <span class="icon featured fa-check"></span>
+                        <header>
+                          <h3>Streamlined Process</h3>
+                        </header>
+                        <p>We​ ​offer​ ​a​ ​suite​ ​of​ ​services​ ​that​ ​any​ ​brands​ ​or​ ​agencies​ ​can​ ​use​ ​to​ ​streamline​ ​the process​ ​of​ ​finding​ ​influencers.</p>
+                      </section>
+    
+                    </div>
+                    <div class="4u 12u(narrower)">
+    
+                      <section>
+                        <span class="icon featured fa-check"></span>
+                        <header>
+                          <h3>100% Free</h3>
+                        </header>
+                        <p>Platform​ ​is​ ​100%​ ​free​ ​for​ ​influencers.</p>
+                      </section>
+    
+                    </div>
+                  </div>
+                </section>
+    
+              <!-- Three -->
+                
+    
+            </article>
+    
+          <!-- CTA -->
+            <section id="cta">
+    
+              <header>
+                <h2>Join our <strong>community</strong></h2>
+                <p>Inocove​ ​is​ ​focussed​ ​on​ ​creating​ ​the​ ​best​ ​environment​ ​for​ ​influencers​ ​to​ ​create relationships​ ​with​ ​brands.​ ​We​ ​do​ ​not​ ​charge​ ​influencers​ ​for​ ​using​ ​our​ ​platform,​ ​and​ ​we provide​ ​an​ ​electronic​ ​contract​ ​that​ ​protects​ ​both​ ​the​ ​Influencer​ ​and​ ​the​ ​brand.</p>
+              </header>
+              <footer>
+                <ul class="buttons">
+                  <li><a routerLink="/influencer" routerLinkActive="active" class="button special">Influencer</a></li>
+                  <li><a routerLink="/brands" routerLinkActive="active" class="button">Brands</a></li>
+                </ul>
+              </footer>
+    
+            </section>
+    
+          <!-- Footer -->
+            <footer id="footer">
+    
+              <ul class="icons">
+                <li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+                <li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+                <li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+              </ul>
+    
+              <ul class="copyright">
+                <li>&copy; Inocove LLC</li> 
+                <li><a routerLink="/privacy" routerLinkActive="active">Privacy Policy</a></li>
+                <li><a routerLink="/terms" routerLinkActive="active">Terms and Conditions</a></li>
+                <li>Website By: <a href="http://www.integratelogic.com">IntegrateLogic</a></li>
+              </ul>
+    
+            </footer>
+    
+        </div>
+    
+      </div>
+          
+
+
+

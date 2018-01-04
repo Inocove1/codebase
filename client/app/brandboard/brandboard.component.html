@@ -1,0 +1,154 @@
+<div class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper" style='position:relative;top:-16px;padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px'>
+  
+    <!-- Main Header -->
+    <div class="main-header" >
+       
+      <aside class="main-sidebar">
+        <div style='position:relative;top:-30px;padding-left:16px;margin:auto;'>
+          <a href="index.html"><img src="assets/images/inocove-logosm.png"></a>
+        </div>
+          <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Brands Dashboard</li>
+            <li class="active"><a routerLink="/brandboard" routerLinkActive="active"><span>Home</span></a></li>
+            <li><a routerLink="/brandcamp" routerLinkActive="active"><span>Campaigns</span></a></li>
+            <li><a routerLink="/brandsearchinfu" routerLinkActive="active"><span>Influencers</span></a></li>
+            <li><a routerLink="/brandmessages" routerLinkActive="active"><span>Messages</span></a></li>
+            <li><a routerLink="/brandcontent" routerLinkActive="active"><span>Content</span></a></li>
+        </ul>
+          <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+  
+  
+      <!-- Header Navbar -->
+      <nav class="navbar" role="navigation" style='padding-top:0px;padding-right:0px;padding-left:0px;padding-bottom:0px;height:40px;'>
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li><a href="#"><span>Home</span></a></li>
+            <li><a routerLink="/brandcamp" routerLinkActive="active"><span>Campaigns</span></a></li>
+            <li><a routerLink="/brandsearchinfu" routerLinkActive="active"><span>Influencers</span></a></li>
+            <li><a routerLink="/brandmessages" routerLinkActive="active"><span>Messages</span></a></li>
+            <li><a routerLink="/brandcontent" routerLinkActive="active"><span>Content</span></a></li>
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!-- The user image in the navbar-->
+                <img src="assets/images/profile/{{this.auth.currentUser._id}}.png" class="user-image" alt="UI">
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">{{this.auth.currentUser.username}}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <li class="user-header">
+                  <img src="assets/images/profile/{{this.auth.currentUser._id}}.png" class="img-circle" alt="UI">
+  
+                  <p>
+                      {{this.auth.currentUser.username}}
+                  </p>
+                </li>
+  
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a routerLink="/brandprofile" routerLinkActive="active" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a routerLink="/logout" routerLinkActive="active" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+  
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- Left side column. contains the logo and sidebar -->
+  
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Brand Dashboard
+          <small>Welcome to your dashboard!</small>
+        </h1>
+
+      </section>
+  
+      <!-- Main content -->
+      <section class="content container-fluid" style="min-height:650px">
+  
+          <div class="inner"style="width:100%">
+              <div class="card" style="width:100%;" >
+                  <h6 class="card-header" style="background-color: #808040">Campaigns</h6>
+                  <div class="card-block">
+                      <p>
+                          You have 0 active Campaigns
+                      </p>
+                      <ul class="buttons pull-right">
+                          <li><a routerLink="/brandcamp" routerLinkActive="active" class="button">Goto Campaigns</a></li>
+                      </ul>
+                  </div>    
+              </div>
+          </div>
+          <div class="inner"style="width:100%">
+              <div class="card" style="width:100%;" >
+                  <h6 class="card-header" style="background-color: #408080">Messages</h6>
+                  <div class="card-block">
+                      <p>
+                          You have 0 new Messages
+                      </p>
+                      <ul class="buttons  pull-right">
+                          <li><a routerLink="/brandmessages" routerLinkActive="active" class="button">Goto Messages</a></li>
+                      </ul>
+                  </div>    
+              </div>
+          </div>
+          <div class="inner"style="width:100%">
+              <div class="card" style="width:100%;" >
+                  <h6 class="card-header" style="background-color: #804080">Content</h6>
+                  <div class="card-block">
+                      <p>
+                          No New content added.
+                      </p>
+                      <ul class="buttons pull-right">
+                          <li><a routerLink="/brandcontent" routerLinkActive="active" class="button">Goto Content</a></li>
+                      </ul>
+                  </div>    
+              </div>
+          </div>
+  
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        Site By <a href="www.integratelogic.com">IntegrateLogic</a>
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2017 <a href="#">Inocove</a>.</strong> All rights reserved.
+    </footer>
+  
+  
+  </div>
+  
+  </div>
+  
+  
